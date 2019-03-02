@@ -1,0 +1,27 @@
+{
+  "name": "chart-preview",
+  "version": "1.0.0",
+  "description": "Node.js application to generate standalone PNG images for chart preview of data source",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/victor192/chart-preview.git"
+  },
+  "author": "victor192",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/victor192/chart-preview/issues"
+  },
+  "homepage": "https://github.com/victor192/chart-preview#readme",
+  "dependencies": {
+    "d3": "^5.9.1",
+    "express": "^4.16.4",
+    "jsdom": "^13.2.0",
+    "node-cron": "^2.0.3",
+    "node-fetch": "^2.3.0",
+    "svg2png": "^4.1.1"
+  }
+}
