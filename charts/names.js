@@ -10,7 +10,7 @@ module.exports = {
     ['ethereum-transactions-per-second']: {
         url: 'https://etherscan.io/chart/tx?output=csv',
         format: 'csv',
-        accessor: d => Number(d) / 86400,
+        prepare: d => Number(d) / 86400,
         type: 'line',
         options: {
             color: '#0086ff'
@@ -28,5 +28,20 @@ module.exports = {
         url: 'http://jkorpela.fi/tsv.tsv',
         format: 'tsv',
         type: 'line_acc'
+    },
+    ['grades']: {
+        url: 'https://people.sc.fsu.edu/~jburkardt/data/csv/grades.csv',
+        format: 'csv',
+        accessor: d => ({argument: d['Last name'], value: d[' "Final"']}),
+        type: 'bar',
+        options: {
+            color: '#ff2660'
+        }
+    },
+    ['delta-hurricanes']: {
+        url: 'https://people.sc.fsu.edu/~jburkardt/data/csv/hurricanes.csv',
+        format: 'csv',
+        accessor: d => ({argument: d['Month'], value: Math.max(0, d[' "2015"'] - d[' "2014"'])}),
+        type: 'pie'
     }
 }

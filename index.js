@@ -46,9 +46,10 @@ const task = cron.schedule('0 */30 * * * *', async () => {
                     const keys = Object.keys(d)
 
                     if (keys.length > 1) {
-                        const point = {[argumentName]: d[keys[0]]}
+                        const source = chart.hasOwnProperty('accessor') ? chart.accessor(d) : {argument: d[keys[0]], value: d[keys[1]]}
+                        const point = {[argumentName]: source.argument}
 
-                        point[valueName] = chart.hasOwnProperty('accessor') ? chart.accessor(d[keys[1]]) : Number(d[keys[1]])
+                        point[valueName] = chart.hasOwnProperty('prepare') ? chart.prepare(source.value) : Number(source.value)
 
                         if (['line_acc', 'bar_acc'].includes(chart.type) && lastPoint !== null) {
                             point[valueName] += lastPoint[valueName]
