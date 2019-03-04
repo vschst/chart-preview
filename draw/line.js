@@ -19,7 +19,7 @@ module.exports = {
     },
     init(data, options) {
         this.data = data
-        this.color = options.hasOwnProperty('color')? options.color : '#cccccc'
+        this.color = options.hasOwnProperty('color') ? options.color : '#cccccc'
         this.scale.x = this.getScaleX()
         this.scale.y = this.getScaleY()
     },

@@ -50,7 +50,7 @@ const task = cron.schedule('0 */30 * * * *', async () => {
 
                         point[valueName] = chart.hasOwnProperty('accessor') ? chart.accessor(d[keys[1]]) : Number(d[keys[1]])
 
-                        if (['line_acc'].includes(chart.type) && lastPoint !== null) {
+                        if (['line_acc', 'bar_acc'].includes(chart.type) && lastPoint !== null) {
                             point[valueName] += lastPoint[valueName]
                         }
 
@@ -88,7 +88,7 @@ const task = cron.schedule('0 */30 * * * *', async () => {
 
 task.start()
 
-app.get('/:name.png', async (req, res) => {
+app.get('/:name.png', (req, res) => {
     const name = req.params.name
     const filePath = `static/${name}.png`
 
