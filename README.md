@@ -50,12 +50,12 @@ npm start
 ```
 Sample url for png file: `https://<your-host>:3000/<chart-name>.png`, where `<your-host>` and `<chart-name>` there are server host and config name of chart.
 
-##### Terminate process
+###### Terminate process
 Run `killall -9 node` or `pkill -f node`
 
-##### Start application to background
+###### Start application to background
 Install latest version of production process manager [PM2](http://pm2.keymetrics.io/):
-``` bash
+```bash
 npm install pm2 -g
 ```
 Next, run command:
@@ -65,19 +65,26 @@ pm2 start npm --name "chart-preview" -- start
 ```
 After that, process will run in the background. If you want to delete the app from the PM2 process list. You just have to enter the following command: `pm2 delete chart-preview`.
 
-##### Data source for charts
+### Data source for charts
 Supported data formats: CSV, CSV and JSON.
-The data source structure for graphs should be an array and look something like this:
-``` json
-[{
-    name: "abc",
-    value1: 123,
-    value2: 321.789
-}, ...]
+The data source structure for charts should be an JavaScript Array and look something like this:
+```js
+[
+    {
+        name: "abc",
+        value1: 123,
+        value2: 321.789
+    }, 
+    {
+        name: "def",
+        value1: 789.012,
+        value2: 456
+    }
+]
 ```
 
 By default, the first key value from the array is taken as the argument for the chart (along the x axis), and the second is taken for the value (along the y axis):
-``` js
+```js
 const keys = Object.keys(d)   //  d - is a data item
 const source = {
     argument: d[keys[0]],   //  argument is a d.name
@@ -86,10 +93,10 @@ const source = {
 ```
 However, you can customize the data selection using the accessor function (See chart configuration below).
 
-##### Charts configuration
+### Charts configuration
 You can customize the graphics in the file [names.js](charts/names.js).
 Its structure is an associative array of objects:
-``` js
+```js
 module.exports = {
     ['<chart-name>']: {
         //  Chart configuration options
@@ -112,15 +119,15 @@ Data source format. Possible values: `csv`, `tsv` or `json`.
 Optional configuration to pick data from data item.
 Must be a function that returns a object with keys `argument` and `value`.
 Example: 
-``` js
-accessor: d => ({argument: d.name, value: d.value1)
+```js
+accessor: d => ({argument: d.name, value: d.value1})
 ```
 
 - **prepare** `Function`
 
 Optional configuration to prepare a value after it is read from the data source.
 Must be a function. Example:
-``` js
+```js
 prepare: d => Number(d) / 86400
 ```
 
@@ -137,7 +144,7 @@ Chart type. It can take the following values:
 - **options** `Object`
 
 Optional configuration for setting chart drawing options.
-Must be an object.
+Must be an object with the following attributes: `color` - color in hex format of the chart line (works for all charts except pie chart), `colors` - array of colors in hex format to fill slices of pie chart (only for pie chart).
 
 # License
 Copyright (c) 2019, Viktor Schastnyy.
