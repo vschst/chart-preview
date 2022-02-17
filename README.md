@@ -17,7 +17,7 @@ sudo apt-get install -y nodejs
 ###### Copying project files
 Clone this repository into your `/var/www` directory:
 ```bash
-git clone https://github.com/victor192/chart-preview.git
+git clone https://github.com/vschst/chart-preview.git
 ```
 
 ###### Install dependencies
