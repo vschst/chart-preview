@@ -17,7 +17,7 @@
   },
   "homepage": "https://github.com/victor192/chart-preview#readme",
   "dependencies": {
-    "d3": "^5.9.1",
+    "d3": "^7.6.1",
     "express": "^4.16.4",
     "jsdom": "^13.2.0",
     "node-cron": "^2.0.3",
